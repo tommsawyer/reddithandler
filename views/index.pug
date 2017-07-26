@@ -1,0 +1,53 @@
+doctype html
+html(lang='ru')
+  head
+    title Reddit Handler
+    link(rel='stylesheet', href='/main.css')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', integrity='sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u', crossorigin='anonymous')
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', integrity='sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.2.1.min.js', integrity='sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=', crossorigin='anonymous')
+    script(src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', integrity='sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa', crossorigin='anonymous')
+  body
+    .container
+      .row
+        .col-md-6.col-md-offset-3
+          h1.text-center Reddit Handler
+          form
+            .form-group
+              label(for='subreddit') Подраздел реддита(e.g. javascript)
+              input#subreddit.form-control(type='text', placeholder='javascript')
+              legend Формат ответа
+              .form-check
+                label.form-check-label
+                  input#answer-csv.form-check-input(type='radio', name='answer-type', value='CSV', checked='')
+                  |         CSV
+              .form-check
+                label.form-check-label
+                  input#answer-sql.form-check-input(type='radio', name='answer-type', value='SQL')
+                  |         SQL
+              .SQL.hidden
+                label(for='sql-table-name') Название таблицы
+                input#sql-table-name.form-control(type='text', placeholder='tableName')
+              legend Что делаем?
+              .form-check
+                label.form-check-label
+                  input#sorting-radio.form-check-input(type='radio', name='type', value='sorting', checked='')
+                  |         Сортировка по полю
+              .form-check
+                label.form-check-label
+                  input#aggregation-radio.form-check-input(type='radio', name='type', value='aggregation')
+                  |         Аггрегация по полю
+              legend Опции
+              .aggregation.hidden
+                label(for='aggregation-field-name') Поле для аггрегации
+                input#aggregation-field-name.form-control(type='text', placeholder='domain')
+              .sorting
+                label(for='sorting-field-name') Поле для сортировки
+                input#sorting-field-name.form-control(type='text', placeholder='score')
+                label(for='sorting-fields') Поля для вывода(через запятую)
+                input#sorting-fields.form-control(type='text', placeholder='id,title')
+                label(for='sorting-direction') Направление сортировки(desc/inc)
+                input#sorting-direction.form-control(type='text', placeholder='desc')
+            .text-center.col-md-12
+              button.btn.btn-primary#send-request(type='submit') Отправить
+  script(src='/main.js')
